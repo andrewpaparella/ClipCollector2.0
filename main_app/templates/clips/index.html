@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Clip List</h1>
+
+{% for clip in clips %}
+  <a href="{% url 'detail' clip.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ clip.streamer }}</span>
+            <p>Game: {{ clip.game }}</p>
+            <p>Description: {{ clip.description }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

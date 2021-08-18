@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Feeding
+from .models import Comment
 
-class FeedingForm(ModelForm):
+class CommentForm(ModelForm):
   class Meta:
-    model = Feeding
-    fields = ['date', 'meal']
+    model = Comment
+    fields = ['date','comment']
 
