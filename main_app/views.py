@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Clip
+from .models import Clip, Comment
 from .forms import CommentForm
 
 class ClipCreate(CreateView):
@@ -48,6 +48,12 @@ def add_comment(request, clip_id):
     new_comment = form.save(commit=False)
     new_comment.clip_id = clip_id
     new_comment.save()
+  return redirect('detail', clip_id=clip_id)
+
+def delete_comment(request, clip_id, comment_id):
+  clip = Clip.objects.get(id=clip_id)
+  comment = Comment.objects.get(id=comment_id)
+  clip.comment_set.remove(comment)
   return redirect('detail', clip_id=clip_id)
 
 # class ToyList(ListView):
